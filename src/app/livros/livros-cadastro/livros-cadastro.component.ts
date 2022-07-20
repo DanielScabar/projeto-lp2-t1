@@ -5,4 +5,13 @@ import {Component} from '@angular/core';
   templateUrl:'./livros-cadastro.component.html',
 })
 
-export class LivrosCadastroComponent {}
+export class LivrosCadastroComponent {
+  id:string;
+  titulo:string;
+  autor:string;
+  npaginas:string;
+  
+  onCadastrarLivro(){
+    console.log("Inserindo Livro...");
+  }
+}

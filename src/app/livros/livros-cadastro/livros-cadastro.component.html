@@ -1,1 +1,9 @@
-<h2>Cadastro de livros</h2>
+<input type="text" placeholder="ID" [(ngModel)]="id">
+<hr>
+<input type="text" placeholder="Título" [(ngModel)]="titulo">
+<hr>
+<input type="text" placeholder="Autor" [(ngModel)]="autor">
+<hr>
+<input type="text" placeholder="Número de páginas" [(ngModel)]="npaginas">
+<hr>
+<button (click)="onCadastrarLivro()" >Cadastrar Livro</button>
