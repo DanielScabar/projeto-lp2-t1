@@ -1,5 +1,7 @@
 <app-cabecalho></app-cabecalho>
 <main>
-  <app-livros-cadastro></app-livros-cadastro>
-  <app-livros-lista></app-livros-lista>
+  <app-livros-cadastro
+    (livroAdicionado)="onLivroCadastrado($event)"
+  ></app-livros-cadastro>
+  <app-livros-lista [livros]="livros"></app-livros-lista>
 </main>

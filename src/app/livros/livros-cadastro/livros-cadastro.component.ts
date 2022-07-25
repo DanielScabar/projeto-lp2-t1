@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector:'app-livros-cadastro',
@@ -7,12 +7,20 @@ import {Component} from '@angular/core';
 })
 
 export class LivrosCadastroComponent {
+  @Output() livroAdicionado = new EventEmitter;
+  
   id:string;
   titulo:string;
   autor:string;
   npaginas:string;
 
   onCadastrarLivro(){
-    console.log("Inserindo Livro...");
+    const livro = {
+      id: this.id,
+      titulo: this.titulo,
+      autor: this.autor,
+      npaginas: this.npaginas
+    };
+    this.livroAdicionado.emit(livro);
   }
 }

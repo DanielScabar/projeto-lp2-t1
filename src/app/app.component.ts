@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'proj_biblioteca';
+  livros = [];
+  onLivroCadastrado(livro){
+    this.livros = [...this.livros,livro];
+  }
 }
