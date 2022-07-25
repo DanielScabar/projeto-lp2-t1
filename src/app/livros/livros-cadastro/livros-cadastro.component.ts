@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import { NgForm } from '@angular/forms';
 import {Livro} from '../livro.model';
 
 @Component({
@@ -15,12 +16,15 @@ export class LivrosCadastroComponent {
   autor:string;
   npaginas:string;
 
-  onCadastrarLivro(){
+  onCadastrarLivro(form: NgForm){
+    if(form.invalid){
+      return;
+    }
     const livro: Livro = {
-      id: this.id,
-      titulo: this.titulo,
-      autor: this.autor,
-      npaginas: this.npaginas
+      id: form.value.id,
+      titulo: form.value.titulo,
+      autor: form.value.autor,
+      npaginas: form.value.npaginas
     };
     this.livroAdicionado.emit(livro);
   }
