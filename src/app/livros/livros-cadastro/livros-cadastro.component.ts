@@ -10,11 +10,6 @@ import {Livro} from '../livro.model';
 
 export class LivrosCadastroComponent {
   @Output() livroAdicionado = new EventEmitter<Livro>();
-  
-  id:string;
-  titulo:string;
-  autor:string;
-  npaginas:string;
 
   onCadastrarLivro(form: NgForm){
     if(form.invalid){
