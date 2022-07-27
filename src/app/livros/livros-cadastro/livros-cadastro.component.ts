@@ -20,6 +20,7 @@ export class LivrosCadastroComponent {
       form.value.titulo,
       form.value.autor,
       form.value.npaginas
-    )
+    );
+    form.resetForm();
   }
 }
