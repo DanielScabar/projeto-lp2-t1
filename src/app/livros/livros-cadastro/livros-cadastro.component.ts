@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Livro} from '../livro.model';
+import {LivroService} from '../livro.service';
 
 @Component({
   selector:'app-livros-cadastro',
@@ -9,18 +9,17 @@ import {Livro} from '../livro.model';
 })
 
 export class LivrosCadastroComponent {
-  @Output() livroAdicionado = new EventEmitter<Livro>();
+  constructor(public livroService:LivroService){}
 
   onCadastrarLivro(form: NgForm){
     if(form.invalid){
       return;
     }
-    const livro: Livro = {
-      id: form.value.id,
-      titulo: form.value.titulo,
-      autor: form.value.autor,
-      npaginas: form.value.npaginas
-    };
-    this.livroAdicionado.emit(livro);
+    this.livroService.setLivro(
+      form.value.id,
+      form.value.titulo,
+      form.value.autor,
+      form.value.npaginas
+    )
   }
 }
