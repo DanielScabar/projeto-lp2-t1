@@ -1,20 +1,10 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
-const livros = [
-  {
-    id: "1",
-    titulo: "O Iluminado",
-    autor: "Stephen King",
-    npaginas: "300",
-  },
-  {
-    id: "2",
-    titulo: "O Cemitério",
-    autor: "Stephen King",
-    npaginas: "220",
-  },
-];
+app.use(bodyParser.json());
+
+const livros = [];
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -27,6 +17,12 @@ app.use((req, res, next) => {
     "GET, POST, PATCH, DELETE, OPTIONS"
   );
   next();
+});
+
+app.post("/api/livros", (req, res, next) => {
+  const livro = req.body;
+  console.log(livro);
+  res.status(201).json({ mensagem: "Livro cadastrado" });
 });
 
 app.use("/api/livros", (req, res, next) => {

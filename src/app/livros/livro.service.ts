@@ -28,8 +28,13 @@ export class LivroService {
       autor: autor,
       npaginas: npaginas,
     };
-    this.livros.push(livro);
-    this.listaLivrosAtualizada.next([...this.livros]);
+    this.httpClient
+      .post<{ mensagem: string }>('http://localhost:3000/api/livros', livro)
+      .subscribe((dados) => {
+        console.log(dados.mensagem);
+        this.livros.push(livro);
+        this.listaLivrosAtualizada.next([...this.livros]);
+      });
   }
 
   getListaDeLivrosAtualizadaObservable() {
