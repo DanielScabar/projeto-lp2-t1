@@ -48,9 +48,12 @@ app.post("/api/livros", (req, res, next) => {
   // autor: req.body.autor,
   // npaginas: req.body.npaginas,
 
-  livro.save();
-  console.log(livro);
-  res.status(201).json({ mensagem: "Livro cadastrado" });
+  livro.save().then((livroInserido) => {
+    res.status(201).json({
+      mensagem: "Livro inserido",
+      id: livroInserido._id,
+    });
+  });
 });
 
 app.get("/api/livros", (req, res, next) => {
@@ -60,6 +63,13 @@ app.get("/api/livros", (req, res, next) => {
       mensagem: "Tudo OK",
       livros: documents,
     });
+  });
+});
+
+app.delete("/api/livros/:id", (req, res, next) => {
+  Livro.deleteOne({ _id: req.params.id }).then((resultado) => {
+    console.log(resultado);
+    res.status(200).json({ mensagem: "Livro removido" });
   });
 });
 
