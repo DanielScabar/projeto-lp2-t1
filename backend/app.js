@@ -6,11 +6,11 @@ const mongoose = require("mongoose");
 const app = express();
 
 const {
-  MONGODB_USER,
-  MONGODB_PASSWORD,
-  MONGODB_CLUSTER,
-  MONGODB_HOST,
-  MONGODB_DATABASE,
+  MONGODB_USER = "danielscabar",
+  MONGODB_PASSWORD = "574368383",
+  MONGODB_CLUSTER = "cluster0",
+  MONGODB_HOST = "3tbws",
+  MONGODB_DATABASE = "",
 } = process.env;
 
 mongoose
@@ -55,6 +55,7 @@ app.post("/api/livros", (req, res, next) => {
 
 app.get("/api/livros", (req, res, next) => {
   Livro.find().then((documents) => {
+    console.log(documents);
     res.status(200).json({
       mensagem: "Tudo OK",
       livros: documents,
