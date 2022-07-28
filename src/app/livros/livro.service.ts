@@ -32,9 +32,8 @@ export class LivroService {
       });
   }
 
-  setLivro(id: string, titulo: string, autor: string, npaginas: string) {
+  setLivro(titulo: string, autor: string, npaginas: string) {
     const livro: Livro = {
-      id: id,
       titulo: titulo,
       autor: autor,
       npaginas: npaginas,

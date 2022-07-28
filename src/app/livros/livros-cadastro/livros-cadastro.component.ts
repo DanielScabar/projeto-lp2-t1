@@ -16,7 +16,6 @@ export class LivrosCadastroComponent {
       return;
     }
     this.livroService.setLivro(
-      form.value.id,
       form.value.titulo,
       form.value.autor,
       form.value.npaginas
