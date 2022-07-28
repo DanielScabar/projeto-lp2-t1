@@ -7,11 +7,11 @@ const cors = require("cors");
 const app = express();
 
 const {
-  MONGODB_USER = "danielscabar",
-  MONGODB_PASSWORD = "574368383",
-  MONGODB_CLUSTER = "cluster0",
-  MONGODB_HOST = "3tbws",
-  MONGODB_DATABASE = "",
+  MONGODB_USER,
+  MONGODB_PASSWORD,
+  MONGODB_CLUSTER,
+  MONGODB_HOST,
+  MONGODB_DATABASE,
 } = process.env;
 
 mongoose
