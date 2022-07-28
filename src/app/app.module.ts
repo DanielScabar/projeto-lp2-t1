@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 
 import { LivrosListaComponent } from './livros/livros-lista/livros-lista.component';
 import { LivrosCadastroComponent } from './livros/livros-cadastro/livros-cadastro.component';
@@ -25,6 +26,7 @@ import { HttpClientModule} from '@angular/common/http'
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
