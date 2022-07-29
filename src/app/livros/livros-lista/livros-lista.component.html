@@ -4,6 +4,9 @@
     <mat-expansion-panel-header>
       Título: {{ livro.titulo }}
     </mat-expansion-panel-header>
+    <div class="livro-imagem">
+      <img [src]="livro.imagemURL" [alt]="livro.titulo" />
+    </div>
     <p>ID: {{ livro.id }}</p>
     <p>Autor: {{ livro.autor }}</p>
     <p>Número de Páginas: {{ livro.npaginas }}</p>

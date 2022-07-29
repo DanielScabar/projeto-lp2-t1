@@ -3,14 +3,14 @@ import { Livro } from './livro.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class LivroService {
   private livros: Livro[] = [];
   private listaLivrosAtualizada = new Subject<Livro[]>();
 
-  constructor(private httpClient: HttpClient, private router:Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   getLivros(): void {
     this.httpClient
@@ -25,6 +25,7 @@ export class LivroService {
               titulo: livro.titulo,
               autor: livro.autor,
               npaginas: livro.npaginas,
+              imagemURL: livro.imagemURL,
             };
           });
         })
@@ -35,19 +36,31 @@ export class LivroService {
       });
   }
 
-  setLivro(titulo: string, autor: string, npaginas: string) {
-    const livro: Livro = {
-      titulo: titulo,
-      autor: autor,
-      npaginas: npaginas,
-    };
+  setLivro(titulo: string, autor: string, npaginas: string, imagem: File) {
+    // const livro: Livro = {
+    //   titulo: titulo,
+    //   autor: autor,
+    //   npaginas: npaginas,
+    // };
+    const dadosLivro = new FormData();
+    dadosLivro.append('titulo', titulo);
+    dadosLivro.append('autor', autor);
+    dadosLivro.append('npaginas', npaginas);
+    dadosLivro.append('imagem', imagem);
     this.httpClient
-      .post<{ mensagem: string; id: string }>(
+      .post<{ mensagem: string; id: string; livro: Livro }>(
         'http://localhost:3000/api/livros',
-        livro
+        dadosLivro
       )
       .subscribe((dados) => {
-        livro.id = dados.id;
+        // livro.id = dados.id;
+        const livro: Livro = {
+          id: dados.id,
+          titulo: titulo,
+          autor: autor,
+          npaginas: npaginas,
+          imagemURL: dados.livro.imagemURL,
+        };
         this.livros.push(livro);
         this.listaLivrosAtualizada.next([...this.livros]);
         this.router.navigate(['/']);
@@ -79,7 +92,7 @@ export class LivroService {
   }
 
   atualizarLivro(id: string, titulo: string, autor: string, npaginas: string) {
-    const livro: Livro = { id, titulo, autor, npaginas };
+    const livro: Livro = { id, titulo, autor, npaginas, imagemURL: null };
     this.httpClient
       .put(`http://localhost:3000/api/livros/${id}`, livro)
       .subscribe((res) => {

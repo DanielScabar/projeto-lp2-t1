@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const livroRoutes = require("./rotas/livros");
+const path = require("path");
 
 const {
   MONGODB_USER = "danielscabar",
@@ -27,6 +28,7 @@ mongoose
   });
 
 app.use(bodyParser.json());
+app.use("/imagens", express.static(path.join("backend/imagens")));
 
 const livros = [];
 
