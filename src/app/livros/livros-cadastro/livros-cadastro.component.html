@@ -43,6 +43,16 @@
         >Digite um número de páginas</mat-error
       >
     </mat-form-field>
+    <div>
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="selecionaArquivo.click()"
+      >
+        Selecionar Imagem
+      </button>
+      <input type="file" #selecionaArquivo />
+    </div>
     <button color="accent" mat-raised-button>Cadastrar Livro</button>
   </form>
 </mat-card>
