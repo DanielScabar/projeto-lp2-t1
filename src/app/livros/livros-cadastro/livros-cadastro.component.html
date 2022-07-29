@@ -1,45 +1,41 @@
 <mat-card>
   <mat-spinner *ngIf="estaCarregando"></mat-spinner>
   <form
-    (submit)="onCadastrarLivro(livroForm)"
+    [formGroup]="form"
+    (submit)="onCadastrarLivro()"
     *ngIf="!estaCarregando"
-    #livroForm="ngForm"
   >
     <mat-form-field>
       <input
         type="text"
-        required
         matInput
         placeholder="Título"
+        formControlName="titulo"
         name="titulo"
-        [ngModel]="livro?.titulo"
-        #titulo="ngModel"
       />
-      <mat-error *ngIf="titulo.invalid">Digite um título</mat-error>
+      <mat-error *ngIf="form.get('titulo').invalid">Digite um título</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
         type="text"
-        required
         matInput
         placeholder="Autor"
+        formControlName="autor"
         name="autor"
-        [ngModel]="livro?.autor"
-        #autor="ngModel"
       />
-      <mat-error *ngIf="autor.invalid">Digite um nome de autor</mat-error>
+      <mat-error *ngIf="form.get('autor').invalid"
+        >Digite um nome de autor</mat-error
+      >
     </mat-form-field>
     <mat-form-field>
       <input
         type="text"
-        required
         matInput
         placeholder="Número de páginas"
+        formControlName="npaginas"
         name="npaginas"
-        [ngModel]="livro?.npaginas"
-        #npaginas="ngModel"
       />
-      <mat-error *ngIf="npaginas.invalid"
+      <mat-error *ngIf="form.get('npaginas').invalid"
         >Digite um número de páginas</mat-error
       >
     </mat-form-field>
