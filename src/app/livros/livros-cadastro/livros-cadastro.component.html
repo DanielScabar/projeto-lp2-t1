@@ -1,5 +1,10 @@
 <mat-card>
-  <form (submit)="onCadastrarLivro(livroForm)" #livroForm="ngForm">
+  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <form
+    (submit)="onCadastrarLivro(livroForm)"
+    *ngIf="!estaCarregando"
+    #livroForm="ngForm"
+  >
     <mat-form-field>
       <input
         type="text"

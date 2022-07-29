@@ -15,13 +15,16 @@ export class LivrosCadastroComponent implements OnInit{
   private modo:string = "criar";
   private idLivro: string;
   public livro: Livro;
+  public estaCarregando: boolean = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has("idLivro")){
         this.modo = "editar";
         this.idLivro = paramMap.get("idLivro");
+        this.estaCarregando = true;
         this.livroService.getLivro(this.idLivro).subscribe(dadosLiv => {
+          this.estaCarregando = false;
           this.livro = {
             id: dadosLiv._id,
             titulo: dadosLiv.titulo,
@@ -43,6 +46,7 @@ export class LivrosCadastroComponent implements OnInit{
     if(form.invalid){
       return;
     }
+    this.estaCarregando = true;
     if(this.modo === "criar"){
       this.livroService.setLivro(
         form.value.titulo,
