@@ -7,7 +7,7 @@
         matInput
         placeholder="Título"
         name="titulo"
-        ngModel
+        [ngModel]="livro?.titulo"
         #titulo="ngModel"
       />
       <mat-error *ngIf="titulo.invalid">Digite um título</mat-error>
@@ -19,7 +19,7 @@
         matInput
         placeholder="Autor"
         name="autor"
-        ngModel
+        [ngModel]="livro?.autor"
         #autor="ngModel"
       />
       <mat-error *ngIf="autor.invalid">Digite um nome de autor</mat-error>
@@ -31,7 +31,7 @@
         matInput
         placeholder="Número de páginas"
         name="npaginas"
-        ngModel
+        [ngModel]="livro?.npaginas"
         #npaginas="ngModel"
       />
       <mat-error *ngIf="npaginas.invalid"
