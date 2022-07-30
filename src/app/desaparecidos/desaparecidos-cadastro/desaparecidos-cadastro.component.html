@@ -2,41 +2,39 @@
   <mat-spinner *ngIf="estaCarregando"></mat-spinner>
   <form
     [formGroup]="form"
-    (submit)="onCadastrarLivro()"
+    (submit)="onCadastrarDesaparecido()"
     *ngIf="!estaCarregando"
   >
     <mat-form-field>
       <input
         type="text"
         matInput
-        placeholder="Título"
-        formControlName="titulo"
-        name="titulo"
+        placeholder="Nome"
+        formControlName="nome"
+        name="nome"
       />
-      <mat-error *ngIf="form.get('titulo').invalid">Digite um título</mat-error>
+      <mat-error *ngIf="form.get('nome').invalid">Digite um nome</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
         type="text"
         matInput
-        placeholder="Autor"
-        formControlName="autor"
-        name="autor"
+        placeholder="Idade"
+        formControlName="idade"
+        name="idade"
       />
-      <mat-error *ngIf="form.get('autor').invalid"
-        >Digite um nome de autor</mat-error
-      >
+      <mat-error *ngIf="form.get('idade').invalid">Digite a idade</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
         type="text"
         matInput
-        placeholder="Número de páginas"
-        formControlName="npaginas"
-        name="npaginas"
+        placeholder="Digite telefone para contato"
+        formControlName="telefone"
+        name="telefone"
       />
-      <mat-error *ngIf="form.get('npaginas').invalid"
-        >Digite um número de páginas</mat-error
+      <mat-error *ngIf="form.get('telefone').invalid"
+        >Digite o telefone para contato</mat-error
       >
     </mat-form-field>
     <div>
@@ -59,9 +57,9 @@
         *ngIf="
           previewImagem && previewImagem !== '' && form.get('imagem').valid
         "
-        [alt]="form.value.titulo"
+        [alt]="form.value.nome"
       />
     </div>
-    <button color="accent" mat-raised-button>Cadastrar Livro</button>
+    <button color="accent" mat-raised-button>Cadastrar Desaparecido</button>
   </form>
 </mat-card>

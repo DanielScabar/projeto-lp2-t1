@@ -1,0 +1,29 @@
+<mat-spinner *ngIf="estaCarregando"></mat-spinner>
+<mat-accordion *ngIf="desaparecidos.length > 0 && !estaCarregando">
+  <mat-expansion-panel *ngFor="let desaparecido of desaparecidos">
+    <mat-expansion-panel-header>
+      Nome: {{ desaparecido.nome }}
+    </mat-expansion-panel-header>
+    <div class="desaparecido-imagem">
+      <img [src]="desaparecido.imagemURL" [alt]="desaparecido.nome" />
+    </div>
+    <p>ID: {{ desaparecido.id }}</p>
+    <p>Idade: {{ desaparecido.idade }}</p>
+    <p>Telefone para contato: {{ desaparecido.telefone }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/editar', desaparecido.id]"
+        >EDITAR</a
+      >
+      <button mat-button color="warn" (click)="onDelete(desaparecido.id)">
+        REMOVER
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p
+  class="mat-body-1"
+  style="text-align: center"
+  *ngIf="desaparecidos.length <= 0 && !estaCarregando"
+>
+  Nenhum desaparecido cadastrado
+</p>

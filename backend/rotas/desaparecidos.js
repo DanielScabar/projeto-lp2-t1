@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const router = express.Router();
-const Livro = require("../models/livro");
+const Desaparecido = require("../models/desaparecido");
 
 const MIME_TYPE_EXTENSAO_MAPA = {
   "image/png": "png",
@@ -31,23 +31,23 @@ router.post(
   multer({ storage: armazenamento }).single("imagem"),
   (req, res, next) => {
     const imagemURL = `${req.protocol}://${req.get("host")}`;
-    const livro = new Livro({
+    const desaparecido = new Desaparecido({
       id: req.body.id,
-      titulo: req.body.titulo,
-      autor: req.body.autor,
-      npaginas: req.body.npaginas,
+      nome: req.body.nome,
+      idade: req.body.idade,
+      telefone: req.body.telefone,
       imagemURL: `${imagemURL}/imagens/${req.file.filename}`,
     });
-    livro.save().then((livroInserido) => {
+    desaparecido.save().then((desaparecidoInserido) => {
       res.status(201).json({
-        mensagem: "Livro inserido",
-        //id: livroInserido._id,
-        livro: {
-          id: livroInserido._id,
-          nome: livroInserido.nome,
-          fone: livroInserido.fone,
-          email: livroInserido.email,
-          imagemURL: livroInserido.imagemURL,
+        mensagem: "Desaparecido inserido",
+        //id: desaparecidoInserido._id,
+        desaparecido: {
+          id: desaparecidoInserido._id,
+          nome: desaparecidoInserido.nome,
+          fone: desaparecidoInserido.fone,
+          email: desaparecidoInserido.email,
+          imagemURL: desaparecidoInserido.imagemURL,
         },
       });
     });
@@ -55,40 +55,42 @@ router.post(
 );
 
 router.get("", (req, res, next) => {
-  Livro.find().then((documents) => {
+  Desaparecido.find().then((documents) => {
     console.log(documents);
     res.status(200).json({
       mensagem: "Tudo OK",
-      livros: documents,
+      desaparecidos: documents,
     });
   });
 });
 
 router.delete("/:id", (req, res, next) => {
-  Livro.deleteOne({ _id: req.params.id }).then((resultado) => {
+  Desaparecido.deleteOne({ _id: req.params.id }).then((resultado) => {
     console.log(resultado);
-    res.status(200).json({ mensagem: "Livro removido" });
+    res.status(200).json({ mensagem: "Desaparecido removido" });
   });
 });
 
 router.put("/:id", (req, res, next) => {
-  const livro = new Livro({
+  const desaparecido = new Desaparecido({
     _id: req.params.id,
-    titulo: req.body.titulo,
-    autor: req.body.autor,
-    npaginas: req.body.npaginas,
+    nome: req.body.nome,
+    idade: req.body.idade,
+    telefone: req.body.telefone,
   });
-  Livro.updateOne({ _id: req.params.id }, livro).then((resultado) => {
-    console.log(resultado);
-  });
+  Desaparecido.updateOne({ _id: req.params.id }, desaparecido).then(
+    (resultado) => {
+      console.log(resultado);
+    }
+  );
   res.status(200).json({ mensagem: "Atualização realizada com sucesso" });
 });
 
 router.get("/:id", (req, res, next) => {
-  Livro.findById(req.params.id).then((liv) => {
+  Desaparecido.findById(req.params.id).then((liv) => {
     if (liv) {
       res.status(200).json(liv);
-    } else res.status(404).json({ mensagem: "Livro não encontrado!" });
+    } else res.status(404).json({ mensagem: "Desaparecido não encontrado!" });
   });
 });
 

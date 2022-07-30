@@ -1,19 +1,19 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const Livro = require("./models/livro");
+const Desaparecido = require("./models/desaparecido");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const livroRoutes = require("./rotas/livros");
+const desaparecidoRoutes = require("./rotas/desaparecidos");
 const path = require("path");
 
 const {
-  MONGODB_USER = "danielscabar",
-  MONGODB_PASSWORD = "574368383",
-  MONGODB_CLUSTER = "cluster0",
-  MONGODB_HOST = "3tbws",
-  MONGODB_DATABASE = "",
+  MONGODB_USER,
+  MONGODB_PASSWORD,
+  MONGODB_CLUSTER,
+  MONGODB_HOST,
+  MONGODB_DATABASE,
 } = process.env;
 
 mongoose
@@ -30,7 +30,7 @@ mongoose
 app.use(bodyParser.json());
 app.use("/imagens", express.static(path.join("backend/imagens")));
 
-const livros = [];
+const desaparecidos = [];
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -45,5 +45,5 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/livros", livroRoutes);
+app.use("/api/desaparecidos", desaparecidoRoutes);
 module.exports = app;

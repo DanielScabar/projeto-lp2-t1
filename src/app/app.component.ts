@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {Livro} from './livros/livro.model';
+import { Desaparecido } from './desaparecidos/desaparecido.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  livros: Livro[] = []
-  onLivroCadastrado(livro){
-    this.livros = [...this.livros,livro];
+  desaparecidos: Desaparecido[] = [];
+  onDesaparecidoCadastrado(desaparecido) {
+    this.desaparecidos = [...this.desaparecidos, desaparecido];
   }
 }

@@ -7,11 +7,11 @@ mat-spinner {
   margin: auto;
 }
 
-.livro-imagem {
+.desaparecido-imagem {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.livro-imagem > img {
+.desaparecido-imagem > img {
   max-width: 50%;
 }
