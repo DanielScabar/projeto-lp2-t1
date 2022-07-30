@@ -10,3 +10,5 @@
 <hr>
 
 Projeto para a matéria Linguagens de programação 2.
+
+Durante o período de guerra, um dos principais problemas é a dificuldade de comunicação entre familiares, principalmente quando há algum tipo de ataque à um determinada região, que compromete toda sua infraestrutura de comunicação. Pensando nisso, desenvolvemos uma plataforma que permite o cadastro de pessoas desaparecidas, e age como um intermediador para fornecer contato entre o desaparecido e os familiares.
