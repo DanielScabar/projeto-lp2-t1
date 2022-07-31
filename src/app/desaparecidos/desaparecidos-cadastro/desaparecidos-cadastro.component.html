@@ -1,5 +1,9 @@
 <mat-card>
-  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <mat-progress-bar
+    mode="indeterminate"
+    *ngIf="estaCarregando"
+  ></mat-progress-bar>
+
   <form
     [formGroup]="form"
     (submit)="onCadastrarDesaparecido()"

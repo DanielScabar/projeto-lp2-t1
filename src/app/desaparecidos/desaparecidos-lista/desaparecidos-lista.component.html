@@ -1,4 +1,7 @@
-<mat-spinner *ngIf="estaCarregando"></mat-spinner>
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="estaCarregando"
+></mat-progress-bar>
 <mat-accordion *ngIf="desaparecidos.length > 0 && !estaCarregando">
   <mat-expansion-panel *ngFor="let desaparecido of desaparecidos">
     <mat-expansion-panel-header>
